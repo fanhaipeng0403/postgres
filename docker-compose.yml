@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+  pg-0:
+    image: bitnami/postgresql-repmgr:14
+    restart: always
+    container_name: pg-0
+    environment:
+      - REPMGR_NODE_NAME=pg-0
+      - REPMGR_NODE_NETWORK_NAME=pg-0
+      - REPMGR_PARTNER_NODES=pg-1,pg-0
+    env_file:
+      - .env
+    ports:
+      - 6000:5432
+    volumes:
+      - /home/test/postgresql/pg-0:/bitnami/postgresql
+    logging:
+      driver: "json-file"
+      options:
+        "max-size": "10m"
+    tty: true
+
+  pg-1:
+    image: bitnami/postgresql-repmgr:14
+    restart: always
+    container_name: pg-1
+    environment:
+      - REPMGR_NODE_NAME=pg-1
+      - REPMGR_NODE_NETWORK_NAME=pg-1
+      - REPMGR_PARTNER_NODES=pg-0,pg-1
+    env_file:
+      - .env
+    ports:
+      - 6001:5432
+    volumes:
+      - /home/test/postgresql/pg-1:/bitnami/postgresql
+    logging:
+      driver: "json-file"
+      options:
+        "max-size": "10m"
+
+    tty: true
+
+  pgpool:
+    image: bitnami/pgpool:4
+    restart: always
+    container_name: pgpool
+    depends_on:
+      - pg-0
+      - pg-1
+    env_file:
+      - .env
+    ports:
+      - 5999:5432
+    healthcheck:
+      test: [ "CMD", "/opt/bitnami/scripts/pgpool/healthcheck.sh" ]
+      interval: 1s
+      timeout: 5s
+      retries: 1
+    logging:
+      driver: "json-file"
+      options:
+        "max-size": "10m"
+
+    tty: true
