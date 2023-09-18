@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+  pg-1:
+    image: bitnami/postgresql-repmgr:14
+    container_name: pg-1
+    restart: always
+    networks:
+      - host
+    environment:
+      - REPMGR_NODE_NAME=pg-1
+      - REPMGR_NODE_NETWORK_NAME=pg-1
+    env_file:
+      - .env
+    ports:
+      - 5433:5432
+    volumes:
+      - /root/postgresql/data:/bitnami/postgresql/
+      - /root/postgresql/custom-conf/:/bitnami/repmgr/conf/
+      - /root/postgresql/conf:/opt/bitnami/postgresql/conf
+
+  pgpool:
+    image: bitnami/pgpool:4
+    container_name: pgpool_1
+    restart: always
+    depends_on:
+      - pg-1
+    env_file:
+      - .env
+    ports:
+      - 9999:5433
+    extra_hosts:
+      - "pg-0:127.0.0.1"
+      - "pg-1:127.0.0.1"
+
+networks:
+  host:
+    external: true
