@@ -64,9 +64,15 @@ docker restart pg-1
 docker restart pg-0
 
 
-# Test
+# 初始化
 
-展示的时候，要经常使用 show pool_nodes， 看每个节点的状态和延时。
+展示的时候，要经常使用 show pool_nodes， 看每个节点的状态和延时。 如果某个节点一直是down状态或者replication_delay不是0, 停止然后重启
+
+
+```
+docker stop pg-1
+docker start pg-1
+```
 
 ```
 
@@ -81,12 +87,6 @@ alias pg-1='psql -h 127.0.0.1 -p 6001 -U customuser customdatabase'
 ```
 
 
-如果某个节点一直是down状态或者replication_delay不是0
-```
-停止然后重启
-docker stop pg-1
-docker start pg-1
-```
 
 
 ## 故障转移
