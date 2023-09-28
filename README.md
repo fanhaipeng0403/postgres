@@ -81,7 +81,7 @@ alias pg-1='psql -h 127.0.0.1 -p 6001 -U customuser customdatabase'
 ```
 
 
-# 如果某个节点一直是down状态或者replication_delay不是0
+如果某个节点一直是down状态或者replication_delay不是0
 ```
 停止然后重启
 docker stop pg-1
