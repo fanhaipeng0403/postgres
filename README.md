@@ -63,8 +63,7 @@ docker restart pgpool
 docker restart pg-1
 docker restart pg-0
 
-
-# 初始化
+## 初始化
 
 展示的时候，要经常使用 show pool_nodes， 看每个节点的状态和延时。 如果某个节点一直是down状态或者replication_delay不是0, 停止然后重启
 
