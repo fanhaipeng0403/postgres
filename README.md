@@ -137,7 +137,6 @@ docker stop pg0
 
 
 ## 负载均衡
-负载均衡主要是在连接时作用，而不是在每个查询上实现负载均衡。
 ```
   psql -h 127.0.0.1 -p 5999 -U postgres -c "select inet_server_addr()"
 ```
