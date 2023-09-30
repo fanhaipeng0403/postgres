@@ -79,16 +79,22 @@ docker-compose  down
 
 docker-compose  up  --build  -d
 
+
 alias pgpool='psql -h 127.0.0.1 -p 5999 -U customuser customdatabase'
 alias pg-0='psql -h 127.0.0.1 -p 6000 -U customuser customdatabase'
 alias pg-1='psql -h 127.0.0.1 -p 6001 -U customuser customdatabase'
+
+pgpool
+
+show pool_nodes
 
 ```
 
 
 
 
-## 故障转移
+## 故障转移  (先stop pg-1, 恢复pg-1, 再stop pg-0)
+
 
 https://dbod-user-guide.web.cern.ch/getting_started/HA/pgpool/
 
@@ -129,7 +135,7 @@ VALUES (1, 1, 1000, 2000, 50000, 300000, 10, 6, 1, 1, null, null, true);
 
 SELECT * FROM game_room;
 
-docker stop pg0
+docker stop pg-1
 
 
 ```
