@@ -144,7 +144,7 @@ create table game_room
 
 INSERT INTO game_room (id, room_id, sb, bb, min_buy_in, max_buy_in, timeout, max, level, room_type, sng_detail,
                               tournament_buy_in, is_available)
-VALUES (1, 1, 1000, 2000, 50000, 300000, 10, 6, 1, 1, null, null, true);
+VALUES (2, 2, 1000, 2000, 50000, 300000, 10, 6, 1, 1, null, null, true);
 
 
 SELECT * FROM game_room;
