@@ -30,6 +30,8 @@ sudo chown -R 1001:1001 /home/test/postgresql
 docker-compose  up  --build  -d
 ```
 
+docker-compose  down
+
 > 查看容器
 
 ```bash
