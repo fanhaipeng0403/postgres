@@ -67,6 +67,11 @@ docker restart pgpool
 docker restart pg-1
 docker restart pg-0
 
+
+
+TODO
+
+
 ## 初始化
 
 展示的时候，要经常使用 show pool_nodes， 看每个节点的状态和延时。 如果某个节点一直是down状态或者replication_delay不是0, 停止然后重启
@@ -95,6 +100,7 @@ show pool_nodes
 
 ```
 
+ select now();
 
 
 
@@ -148,7 +154,14 @@ docker stop pg-1
 
 ## 负载均衡
 ```
+
+  docker inspect pg-0 | grep IPAddress
+  docker inspect pg-1 | grep IPAddress
+
   psql -h 127.0.0.1 -p 5999 -U postgres -c "select inet_server_addr()"
+
+  adminpassword
+
 ```
 
 ## 流赋值
