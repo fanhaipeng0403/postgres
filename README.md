@@ -30,7 +30,6 @@ sudo chown -R 1001:1001 /home/test/postgresql
 docker-compose  up  --build  -d
 ```
 
-docker-compose  down
 
 > 查看容器
 
@@ -63,6 +62,7 @@ psql -h 127.0.0.1 -p 5999 -U customuser customdatabase
 ![](https://file0.52tesla.com/xtbf/d666c28d38424c62a13088f2c1c01cf1/c02aaed6)
 
 
+
 docker restart pgpool
 docker restart pg-1
 docker restart pg-0
@@ -83,6 +83,7 @@ docker-compose  down
 
 docker-compose  up  --build  -d
 
+docker ps --filter name=pg
 
 alias pgpool='psql -h 127.0.0.1 -p 5999 -U customuser customdatabase'
 alias pg-0='psql -h 127.0.0.1 -p 6000 -U customuser customdatabase'
