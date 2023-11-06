@@ -2,6 +2,9 @@
 # REPMGR+PGPOOL实现双机流式复制、集群
 
 
+https://hub.docker.com/r/bitnami/pgpool
+
+
 ## REPMGR
 是一个基于流复制的工具，用于管理和监控PostgreSQL数据库的复制。它可以自动创建和管理主备服务器，并提供了故障检测、自动故障转移、故障恢复等功能。REPMGR可以帮助构建高可用性系统，确保数据库的连续性。
 
