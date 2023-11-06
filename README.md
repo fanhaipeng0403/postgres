@@ -13,6 +13,8 @@ REPMGR和PGPOOL可以结合使用，构建高可用性的PostgreSQL数据库集�
 
 # Start up
 
+git fetch --all && git reset --hard origin/master &&  git pull
+
 > 配置.env环境变量
 
 > 数据卷权限设置
